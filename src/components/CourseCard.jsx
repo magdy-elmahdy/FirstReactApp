@@ -1,8 +1,11 @@
 import './course-card.css';
 
-function CourseCard({ data }) {
+// استقبال data كـ prop واحد ثم فك خصائصه
+function CourseCard( { title, price, lessions, duration, image, category }  ) {
+    // const { title, price, lessions, duration, image, category } = data;
+
     // حساب المدة الإجمالية بالدقائق
-    const totalDuration = data.lessions * data.duration;
+    const totalDuration = lessions * duration;
     
     // تحويل الدقائق إلى ساعات ودقائق
     const hours = Math.floor(totalDuration / 60);
@@ -13,22 +16,19 @@ function CourseCard({ data }) {
 
     return (
         <div className="course-card">
-            {/* صورة الكورس */}
             <div className="card-image">
-                <img src={data.image || 'https://via.placeholder.com/400x250'} alt={data.title} />
-                <div className="card-badge">{data.category || 'Programming'}</div>
+                <img src={image || 'https://via.placeholder.com/400x250'} alt={title} />
+                <div className="card-badge">{category || 'Programming'}</div>
             </div>
 
-            {/* محتوى الكارد */}
             <div className="card-content">
-                <h2 className="card-title">{data.title}</h2>
+                <h2 className="card-title">{title}</h2>
                 
-                {/* معلومات الكورس */}
                 <div className="card-info">
                     <div className="info-item">
                         <span className="info-icon">📚</span>
                         <span className="info-label">Lessons:</span>
-                        <span className="info-value">{data.lessions}</span>
+                        <span className="info-value">{lessions}</span>
                     </div>
                     
                     <div className="info-item">
@@ -40,11 +40,10 @@ function CourseCard({ data }) {
                     <div className="info-item">
                         <span className="info-icon">💰</span>
                         <span className="info-label">Price:</span>
-                        <span className="info-value price">{data.price} EGP</span>
+                        <span className="info-value price">{price} EGP</span>
                     </div>
                 </div>
 
-                {/* زر التفاصيل */}
                 <button className="card-button">
                     View Details
                     <span className="button-arrow">→</span>
