@@ -5,9 +5,30 @@ import Footer from './components/layout/footer';
 
 
 function App() {
-
+  const ReactCourse = {
+    title:'React Masterclass',
+    lessions: 11,
+    price: 2600,
+    duration: 70,
+    image:"https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop",
+    category:"Frontend"
+  };
+  const NodeCourse = {
+    title:'Node.js',
+    lessions: 20,
+    price: 2500,
+    duration: 60,
+    image:"https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=250&fit=crop",
+    category:"Backend Development"
+  };
+  const hamboze = {
+    lessions: 8,
+    price: 888,
+    duration: 8
+  };
   return (
     <div className="app">
+
       <Header />
       <h1>Our Courses</h1>
       <div style={{
@@ -16,9 +37,10 @@ function App() {
         justifyContent: 'center',
         padding: '2rem'
       }}>
-        <CourseCard title='React Masterclass' lessions={25} duration={45} price={1500} image="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=250&fit=crop" category='Frontend' />
-        <CourseCard title='Node.js Backend Development' lessions={40} duration={60} price={25000} image="https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=250&fit=crop" category='Backend' />
-        <CourseCard />
+        <CourseCard course={ReactCourse} hamboze={hamboze} />  
+        <CourseCard course={NodeCourse} />  
+        <CourseCard course={{title:"HTML" ,lessions:10,price:500,duration:15,category:"Backend Development" }} />  
+        <CourseCard course={{}} />  
       </div>
       <Footer />
     </div>

@@ -1,8 +1,12 @@
 import './course-card.css';
 
 // استقبال data كـ prop واحد ثم فك خصائصه
-function CourseCard( { title:courseTitlte="UnKnown", price=0, lessions=0, duration=0, image, category }  ) {
-    // const { courseTitlte, price, lessions, duration, image, category } = data;
+function CourseCard( Props) {
+    console.log("log Props:", Props);
+    const {course} = Props
+    console.log("log course:", course)
+    
+    const { title:courseTitle="UnKown", price=0, lessions=0, duration=0, image, category="UnKown" } = course;
 
     // حساب المدة الإجمالية بالدقائق
     const totalDuration = lessions * duration;
@@ -17,12 +21,12 @@ function CourseCard( { title:courseTitlte="UnKnown", price=0, lessions=0, durati
     return (
         <div className="course-card">
             <div className="card-image">
-                <img src={image || 'https://via.placeholder.com/400x250'} alt={courseTitlte} />
+                <img src={image || 'https://via.placeholder.com/400x250'} alt={courseTitle} />
                 <div className="card-badge">{category || 'Programming'}</div>
             </div>
 
             <div className="card-content">
-                <h2 className="card-title">{courseTitlte}</h2>
+                <h2 className="card-title">{courseTitle}</h2>
                 
                 <div className="card-info">
                     <div className="info-item">
