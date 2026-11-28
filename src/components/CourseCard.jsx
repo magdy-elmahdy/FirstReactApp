@@ -1,21 +1,21 @@
 import './course-card.css';
 
 // استقبال data كـ prop واحد ثم فك خصائصه
-function CourseCard( Props) {
+function CourseCard(Props) {
     console.log("log Props:", Props);
-    const {course} = Props
-    console.log("log course:", course)
-    
-    const { title:courseTitle="UnKown", price=0, lessions=0, duration=0, image, category="UnKown" } = course;
+    // const {course} = Props
+    // console.log("log course:", course)
+
+    const { title: courseTitle = "UnKown", price = 0, lessions = 0, duration = 0, image, category = "UnKown", children } = Props;
 
     // حساب المدة الإجمالية بالدقائق
     const totalDuration = lessions * duration;
-    
+
     // تحويل الدقائق إلى ساعات ودقائق
     const hours = Math.floor(totalDuration / 60);
     const minutes = totalDuration % 60;
-    const formattedDuration = hours > 0 
-        ? `${hours}h ${minutes}m` 
+    const formattedDuration = hours > 0
+        ? `${hours}h ${minutes}m`
         : `${minutes}m`;
 
     return (
@@ -27,25 +27,27 @@ function CourseCard( Props) {
 
             <div className="card-content">
                 <h2 className="card-title">{courseTitle}</h2>
-                
+
                 <div className="card-info">
                     <div className="info-item">
                         <span className="info-icon">📚</span>
                         <span className="info-label">Lessons:</span>
                         <span className="info-value">{lessions}</span>
                     </div>
-                    
+
                     <div className="info-item">
                         <span className="info-icon">⏱️</span>
                         <span className="info-label">Duration:</span>
                         <span className="info-value">{formattedDuration}</span>
                     </div>
-                    
+
                     <div className="info-item">
                         <span className="info-icon">💰</span>
                         <span className="info-label">Price:</span>
-                        <span className="info-value price">{price} EGP</span>
+                        <span className="info-value price">{price === 0 ? "Free" : `${price} EGP`}</span>
                     </div>
+                    {children}
+
                 </div>
 
                 <button className="card-button">
